@@ -31,13 +31,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "graphene_django",
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'peterMusically.models.user.schema.schema',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'peterMusically.urls'
+
+
 
 TEMPLATES = [
     {
@@ -80,7 +88,9 @@ DATABASES = {
     }
 }
 
-
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

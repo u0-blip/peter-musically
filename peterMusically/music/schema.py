@@ -24,7 +24,7 @@ class Query(graphene.ObjectType):
             )
             return Music.objects.filter(filters)
 
-        return Music.objects.limit(10).all()
+        return Music.objects.all()
 
 class CreateTrack(graphene.Mutation):
     track = graphene.Field(MusicType)

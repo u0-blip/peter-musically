@@ -6,6 +6,11 @@ from django.shortcuts import render
 from .forms import UploadFileForm
 import os
 import peterMusically.settings as settings
+import uuid
+from django.db import models
+import uuid
+import urllib.parse
+import json
 
 # Imaginary function to handle an uploaded file.
 
@@ -16,20 +21,20 @@ def handle_uploaded_file(f, name):
 
 def music_file(request, id=None):
     if request.method == 'POST':
-        handle_uploaded_file(request.FILES['file'], request.POST['name'])
-        return HttpResponse('success', status=200)
+        id = uuid.uuid4().hex
+        url = id + '.mp3'
+        handle_uploaded_file(request.FILES['file'], url)
+        return HttpResponse(json.dumps({'url': url}), status=200)
 
     elif request.method == 'GET':
         if id==None:
             return HttpResponse('Please provide id', status=404)
 
-
         file_path = os.path.join(settings.MEDIA_ROOT, id)
-        
+        print(file_path, os.path.exists(file_path))
         if os.path.exists(file_path):
             with open(file_path, 'rb') as fh:
                 response = HttpResponse(fh.read(), content_type="audio/mpeg")
                 response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
                 return response
         raise Http404
-        

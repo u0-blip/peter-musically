@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 
+
 class Music(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True)

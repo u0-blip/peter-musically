@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
-from music.views import upload_file
+from music.views import music_file
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
-    path('music/upload/', csrf_exempt(upload_file))
+    path('music/', csrf_exempt(music_file)),
+    path('music/<str:id>', csrf_exempt(music_file)),
 ]

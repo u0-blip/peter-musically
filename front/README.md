@@ -73,3 +73,6 @@ authentication token is decoded and verified in the backend and userId deciphere
 
 Storing JWTs in localStorage is not a safe approach to implement authentication on the frontend. Because this tutorial is focused on GraphQL, we want to keep things simple and therefore are using it here. You can read more about this topic here.
 https://www.rdegges.com/2018/please-stop-using-local-storage/
+
+To fix:
+make the action instant update.

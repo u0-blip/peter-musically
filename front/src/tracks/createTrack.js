@@ -55,8 +55,8 @@ const CreateTrack = ({ classes }) => {
 
     const handleUpdateCache = (cache, { data: { createTrack } }) => {
         const data = cache.readQuery({ query: GET_TRACKS_QUERY })
-        const tracks = data.tracks.concat(createTrack.track)
-        cache.writeQuery({ query: GET_TRACKS_QUERY, data: { tracks } })
+        const music = data.music.concat(createTrack.music)
+        cache.writeQuery({ query: GET_TRACKS_QUERY, data: { music } })
     }
 
     const handleSubmit = async (event, createTrack) => {

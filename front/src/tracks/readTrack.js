@@ -3,6 +3,7 @@ import { ArrowDropDown, ThumbUp } from '@material-ui/icons'
 import Axios from 'axios';
 import React, { Component } from 'react'
 import ReactPlayer from 'react-player';
+import DeleteTrack from './deleteTrack';
 
 export class Track extends Component {
     render() {
@@ -35,6 +36,7 @@ export class Track extends Component {
 
                             </Box>
                         </Grid>
+                        <DeleteTrack track={track} />
                         <ArrowDropDown />
                     </Grid>
                 </Card>

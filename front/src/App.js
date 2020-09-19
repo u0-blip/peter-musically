@@ -10,6 +10,7 @@ import Navbar from './util/Navbar';
 import Axios from 'axios';
 import Login from './Auth/Login';
 import Signup from './Auth/Signup';
+import Profile from './pages/profile';
 
 Axios.defaults.baseURL = 'http://127.0.0.1:8000';
 
@@ -50,6 +51,22 @@ export const GET_SELF_QUERY = gql`
   }
 `;
 
+export const GET_USER_QUERY = gql`
+  query ($id:Int!){
+    user (id: $id){
+      id
+      username
+      email
+      dateJoined
+      musicSet{
+        id
+        title
+        url
+      }
+    }
+  }
+`;
+
 function App() {
   return (
 
@@ -60,6 +77,7 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
+          <Route path='/profile/:id' component={Profile} />
         </Switch>
       </Router>
     </ApolloProvider>

@@ -34,15 +34,14 @@ class CreateTrack(graphene.Mutation):
         description = graphene.String()
         hashtag = graphene.String()
         url = graphene.String()
-        owner = graphene.String()
 
-    def mutate(self, info, title, description, url, hashtag, owner):
+    def mutate(self, info, title, description, url, hashtag):
         user = info.context.user
 
         if user.is_anonymous:
             raise GraphQLError("Please logon")
 
-        music = Music(title=title, description=description, url=url, hashtag=hashtag, owner=owner)       
+        music = Music(title=title, description=description, url=url, hashtag=hashtag, owner=user)       
         music.save()
         return CreateTrack(track=music)
 
@@ -53,7 +52,7 @@ class DeleteTrack(graphene.Mutation):
         url = graphene.String(required=True)
 
     def mutate(self, info, url):
-        music = Music.objects.filter(url__exact=url)[0]
+        music = Music.objects.get(url=url)
         if music:
             music.delete()
             return DeleteTrack(url=url)

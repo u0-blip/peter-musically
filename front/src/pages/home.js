@@ -1,8 +1,8 @@
 import { Grid } from '@material-ui/core';
 import React, { Component } from 'react'
-import SearchBar from './searchBar';
-import Track from './readTrack';
-import CreateTrack from './createTrack';
+import SearchBar from '../tracks/searchBar';
+import Track from '../tracks/readTrack';
+import CreateTrack from '../tracks/createTrack';
 import { gql, useQuery } from '@apollo/client';
 import { Query } from "react-apollo";
 import { GET_TRACKS_QUERY } from '../App';

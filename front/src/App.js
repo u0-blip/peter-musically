@@ -12,7 +12,7 @@ import Login from './Auth/Login';
 import Signup from './Auth/Signup';
 import Profile from './pages/profile';
 
-Axios.defaults.baseURL = 'http://127.0.0.1:8000';
+Axios.defaults.baseURL = 'https://musically.peterelectreng.com';
 
 const client = new ApolloClient({
   uri: Axios.defaults.baseURL + '/graphql/',
@@ -102,4 +102,4 @@ export const GET_TRACKS_QUERY = gql`
 
 `;
 
-export default App; 
+export default App;
